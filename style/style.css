@@ -4,6 +4,16 @@
     padding: 0;
 }
 
+a{
+    text-decoration: none;
+    color: #49AA26;
+    opacity: 0.7;
+}
+
+a:hover{
+    opacity: 1;
+}
+
 .container{
     width: min(90vw,800px);
     margin: auto;
@@ -25,7 +35,7 @@ p{
 }
 
 
-header{
+.header{
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -39,9 +49,10 @@ span{
 }
 
 #balance{
-    margin-top: -90px;
+    margin-top: -60px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
     justify-content: space-between;
 }
 
@@ -54,10 +65,13 @@ h2{
     margin-bottom: 20px;
     border: 1px solid #CCC;
     background-color: #FFF;
-    padding: 20px 20px;
+    padding: 10px 40px;
     border-radius: 5px;
 }
 
+.cards img{
+    float: right;
+}
 
 
 .card--precos{
@@ -71,14 +85,13 @@ h2{
     color: #FFF;
 }
 
-#trasiction h2{
-    color: cadetblue;
-    font-weight: normal;
+#trasiction{
     margin-top: 25px;
 }
 
 #data-table{
     width: 100%;
+    margin-top: 10px;
     border-spacing: 0 0.5rem;
     color: #969cb3;
 }
@@ -110,6 +123,12 @@ table thead tr td:first-child{
 
 }
 
+table thead tr th:last-child,
+table thead tr td:last-child{
+    border-radius: 0 0.25rem 0.25rem 0;
+
+}
+
 td.description{
     color: cadetblue;
 
@@ -127,7 +146,19 @@ footer{
     text-align: center;
     padding: 4rem 0 2rem;
     color: cadetblue;
-
     opacity: 0.6rem;
+}
 
+.redes{
+    margin:auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    height: 50px;
+}
+
+.redes img{
+    width: 30px;
+    height: 30px;
 }

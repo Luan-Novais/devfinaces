@@ -11,15 +11,15 @@
 </head>
 
 <body>
-    <header>
-        <h1>dev<span>.</span>finances<span>$</span></h1>
+    <header class="header">
+        <h1><img src="./assets/logo.svg" alt="Logo Dev Finance"></h1>
     </header>
     <main class="container">
         <section id="balance">
-            <h2>Balanço</h2>
             <div class="cards">
                 <div class="card--entradas">
                     Entradas
+                    <img src="./assets/income.svg" alt="Entradas">
                 </div>
                 <div class="card--precos">
                     R$ 5.000,00
@@ -28,6 +28,7 @@
             <div class="cards">
                 <div class="card--entradas">
                     Saídas
+                    <img src="./assets/expense.svg" alt="Saídas">
                 </div>
                 <div class="card--precos">
                     - R$ 5.000,00
@@ -36,6 +37,7 @@
             <div class="cards total">
                 <div class="card--entradas">
                     Total
+                    <img src="./assets/total.svg" alt="Total">
                 </div>
                 <div class="card--precos">
                     R$ 5.000,00
@@ -45,13 +47,14 @@
         </section>
 
         <section id="trasiction">
-            <h2>Transações</h2>
+            <a href="#" class="button new">+ Nova Transação</a>
             <table id="data-table">
                 <thead>
                     <tr>
                         <th>Descrição</th>
                         <th>Valor</th>
                         <th>Data</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,16 +62,20 @@
                         <td class="description">Luz</td>
                         <td class="expense">- R$ 500,00</td>
                         <td class="date">23/01/2021</td>
+                        <td class="minus"><img src="./assets/minus.svg" alt="">
+                        </td>
                     </tr>
                     <tr>
                         <td class="description">Criação website</td>
                         <td class="income">R$ 5000,00</td>
                         <td class="date">23/01/2021</td>
+                        <td class="minus"><img src="./assets/minus.svg" alt="">
                     </tr>
                     <tr>
                         <td class="description">Internet</td>
                         <td class="expense">- R$ 200,00</td>
                         <td class="date">23/01/2021</td>
+                        <td class="minus"><img src="./assets/minus.svg" alt="">
                     </tr>
                 </tbody>
             </table>
@@ -76,8 +83,14 @@
     </main>
 
 
-    <footer>dev.finance$</footer>
-
+    <footer>2021 - dev.finance$
+        <div class="redes">
+            <a href="https://github.com/Luan-Novais" target="_blank"><img src="./assets/github.png" alt=""></a>
+            <a href="https://www.linkedin.com/in/luan-novais-bi/"  target="_blank"><img src="./assets/linkedin.png" alt=""></a>
+        </div>
+    </footer>
+    
 </body>
+
 
 </html>
