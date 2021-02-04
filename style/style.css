@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+html{
+   font-size: 93.75%
+}
+
 a{
     text-decoration: none;
     color: #49AA26;
@@ -52,7 +56,7 @@ span{
     margin-top: -60px;
     display: flex;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
 }
 
@@ -62,6 +66,7 @@ h2{
 }
 
 .cards{
+    width: 100%;
     margin-bottom: 20px;
     border: 1px solid #CCC;
     background-color: #FFF;
@@ -161,4 +166,31 @@ footer{
 .redes img{
     width: 30px;
     height: 30px;
+}
+
+@media(min-width: 479px) and (max-width: 800px) {
+
+
+    #balance{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .cards{
+        width: 100%;
+        padding: 5px 10px;
+
+    }
+
+    #data-table{
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .expense,
+    .income{
+        padding: 0;
+    }
 }
