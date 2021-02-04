@@ -92,6 +92,8 @@ h2{
 
 #trasiction{
     margin-top: 25px;
+    display: block;
+    overflow-x: auto;
 }
 
 #data-table{
@@ -99,6 +101,7 @@ h2{
     margin-top: 10px;
     border-spacing: 0 0.5rem;
     color: #969cb3;
+
 }
 
 table th {
@@ -132,6 +135,10 @@ table thead tr th:last-child,
 table thead tr td:last-child{
     border-radius: 0 0.25rem 0.25rem 0;
 
+}
+
+.minus a{
+    cursor: pointer;
 }
 
 td.description{
@@ -168,7 +175,7 @@ footer{
     height: 30px;
 }
 
-@media(min-width: 479px) and (max-width: 800px) {
+@media(min-width: 800px) {
 
 
     #balance{
@@ -182,11 +189,6 @@ footer{
         width: 100%;
         padding: 5px 10px;
 
-    }
-
-    #data-table{
-        width: 100%;
-        font-size: 14px;
     }
 
     .expense,
