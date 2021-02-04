@@ -48,9 +48,6 @@ p{
     color: #FFF;
 }
 
-span{
-    color: greenyellow;
-}
 
 #balance{
     margin-top: -60px;
@@ -62,7 +59,8 @@ span{
 
 h2{
     margin-bottom: 10px;
-    color: #FFF;
+    font-weight: 400;
+    color: #000;
 }
 
 .cards{
@@ -152,6 +150,78 @@ td.income {
 
 td.expense {
     color: #e92929;
+}
+
+.modal-overlay{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.7);
+    position: fixed;
+    top: 0; 
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal{
+    background: #F0F2F5;
+    padding: 2.4rem;
+    position: relative;
+}
+
+.form-modal{
+    display: flex;
+    flex-direction: column;
+}
+
+input:focus{
+    border: 0;
+    outline: 0;
+}
+
+.form-modal input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #969cb3;
+}
+
+#number{
+    margin-bottom: 0;
+}
+
+.modal span{
+    margin-bottom: 10px;
+    color: #969cb3;
+}
+
+.btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+.btn a{
+    padding: 10px 100px;
+}
+
+#cancelar{
+    border: 1px solid red;
+    color: red;
+}
+
+#salvar{
+    border: 1px solid #49AA26;
+    background-color: #49AA26;
+    color: #FFF;
 }
 
 footer{
