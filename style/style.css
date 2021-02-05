@@ -152,6 +152,7 @@ td.expense {
     color: #e92929;
 }
 
+
 .modal-overlay{
     width: 100%;
     height: 100%;
@@ -175,6 +176,8 @@ td.expense {
     background: #F0F2F5;
     padding: 2.4rem;
     position: relative;
+    max-width: 550px;
+    width: 90%;
 }
 
 .form-modal{
@@ -192,36 +195,53 @@ input:focus{
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #969cb3;
+    border-radius: 0.2rem;
 }
 
-#number{
+#amount{
     margin-bottom: 0;
 }
 
 .modal span{
     margin-bottom: 10px;
     color: #969cb3;
+    font-size: 12px;
 }
 
 .btn{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between
+    flex-direction: column;
+    justify-content: space-between;
+    
 }
 
 .btn a{
-    padding: 10px 100px;
+    padding: 5px 50px;
+    margin-bottom: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 #cancelar{
     border: 1px solid red;
-    color: red;
+    color: #e92929;
+    border-radius: 0.25rem;
 }
 
 #salvar{
-    border: 1px solid #49AA26;
+    cursor: pointer;
+    border: none;
     background-color: #49AA26;
     color: #FFF;
+    padding: 10px 70px;
+    border-radius: 0.25rem;
+}
+
+#salvar:hover{
+    background-color: #3dd705;
+    transition: 1s
 }
 
 footer{
@@ -247,7 +267,6 @@ footer{
 
 @media(min-width: 800px) {
 
-
     #balance{
         width: 100%;
         display: grid;
@@ -265,4 +284,13 @@ footer{
     .income{
         padding: 0;
     }
+
+    .btn{
+        flex-direction: row;        
+    }
+
+    .btn a{
+        margin-bottom: 0;
+    }
+    
 }
