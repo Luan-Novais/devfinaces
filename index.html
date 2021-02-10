@@ -66,13 +66,13 @@
     <div class="modal-overlay">
         <div class="modal">
             <h2>Nova Transação</h2>
-            <form action="submit" class="form-modal">
+            <form action="" onsubmit="Form.submit(event)" class="form-modal">
                 <input type="text" id="description" name="description" placeholder="Descrição">
-                <input type="number" id="amount" name="amount" step="0.01" placeholder="0,00">
+                <input type="number" id="amount" name="amount" step="0.01" placeholder="R$ 0,00">
                 <span>sinal - (negativo) para despesas e , (vurgula) para casas decimais</span>
-                <input type="date" name="" id="">
+                <input type="date" name="" id="date">
                 <div class="btn">
-                    <a href="" id="cancelar">Cancelar</a>
+                    <a href="" id="cancelar" onclick="modalClose()">Cancelar</a>
                     <button id="salvar">Salvar</button>
                 </div>
 

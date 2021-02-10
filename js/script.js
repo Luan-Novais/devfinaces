@@ -3,27 +3,33 @@ document.querySelector('#novaTransacao').addEventListener("click",function(e){
     document.querySelector('.modal-overlay').classList.add('active')
 });
 
+// document.querySelector("#cancelar").addEventListener('click', function modalClose(e){
+//     e.preventDefault();
+//     document.querySelector('.modal-overlay').classList.remove('active')
+// })
 
-document.querySelector("#cancelar").addEventListener("click", function(e){
-    e.preventDefault();
+function modalClose(){
+    event.preventDefault();
+    console.log('teste')
     document.querySelector('.modal-overlay').classList.remove('active')
-});
+
+}
+
+
+
 
 const transactions = [
     {
-        id: 1,
         description: 'Luz',
         amount: -50000,
         date: '23/01/2021',
     },
     {
-        id: 2,
         description: 'Website',
         amount: 50000,
         date: '23/01/2021',
     },
     {
-        id: 3,
         description: 'Internet',
         amount: -20000,
         date: '23/01/2021',
@@ -35,6 +41,14 @@ const Transaction = {
 
     add(transaction){
         Transaction.all.push(transaction)
+
+        App.reload()
+    },
+
+    remove(index){
+        Transaction.all.splice(index, 1);
+
+        App.reload();
     },
 
     incomes() {
@@ -98,10 +112,24 @@ const DOM = {
             Utils.formatCurrency(Transaction.expenses());
         const total = document.getElementById('totalDisplay').innerHTML = 
             Utils.formatCurrency(Transaction.total());
+    },
+
+    clearTransactions() {
+        DOM.transactionsContainer.innerHTML = ""
     }
 }
 
 const Utils = {
+    formatAmount(value){
+        value = Number(value) * 100
+        return value
+    },
+
+    formatDate(date){
+        const splittedDate = date.split("-")
+        return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
+    },
+
     formatCurrency(value){
         const signal = Number(value) < 0 ? "-" : ""
 
@@ -118,15 +146,81 @@ const Utils = {
     }
 }
 
+const Form = {
+    description: document.querySelector('#description'),
+    amount: document.querySelector('#amount'),
+    date: document.querySelector('#date'),
+
+    getValues() {
+        return {
+            description: Form.description.value,
+            amount: Form.amount.value,
+            date:Form.date.value
+        }
+    },
+
+    validadeFields(){
+        const { description, amount, date } = Form.getValues()
+        console.log(this.getValues())
+
+        if( description.trim() === "" || 
+            amount.trim() === "" || 
+            date.trim() === ""){
+                throw new Error("Por favor, preencha todos os campos")
+        }
+    },
+
+    formatValues(){
+        let  { description,amount, date } = Form.getValues()
+        amount  = Utils.formatAmount(amount);
+
+        date = Utils.formatDate(date);
+
+        return{
+            description,
+            amount,
+            date
+        }
+    },
+
+    saveTransaction(transaction) {
+        Transaction.add(transaction)
+    },
+
+    clearFields() {
+        Form.description.value = ""
+        Form.amount.value = ""
+        Form.date.value = ""
+
+    },
+
+    submit(event) {
+        event.preventDefault();
+
+        try {
+            Form.formatValues();
+            const transaction = Form.formatValues();
+            Form.validadeFields();
+            Form.saveTransaction(transaction);
+            Form.clearFields();
+            modalClose();
+            
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+}
+
 const App = {
     init() {
         Transaction.all.forEach(transaction => {
             DOM.addTransaction(transaction)
         })
 
-        DOM.updateBalance()
+        DOM.updateBalance();
     },
     reload() {
+        DOM.clearTransactions();
         App.init();
 
     },
