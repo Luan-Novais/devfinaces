@@ -261,6 +261,10 @@ footer{
     height: 50px;
 }
 
+.negativo{
+    background-color: #e92929;
+}
+
 .redes img{
     width: 30px;
     height: 30px;

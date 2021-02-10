@@ -59,7 +59,14 @@ const Transaction = {
 
     },
     total() {
-        return Transaction.incomes() + Transaction.expenses()
+        total = Transaction.incomes() + Transaction.expenses()
+        if(total < 0) {
+            document.querySelector('.total').classList.add('negativo')
+        }else{
+            document.querySelector('.total').classList.remove('negativo')
+
+        }
+        return  total
     }   
 }
 
@@ -98,7 +105,8 @@ const DOM = {
         const expense = document.getElementById('expenseDisplay').innerHTML = 
             Utils.formatCurrency(Transaction.expenses());
         const total = document.getElementById('totalDisplay').innerHTML = 
-            Utils.formatCurrency(Transaction.total());
+            Utils.formatCurrency(Transaction.total()); 
+
     },
 
     clearTransactions() {
@@ -216,3 +224,4 @@ const App = {
 
 
 App.init()
+
