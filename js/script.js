@@ -3,41 +3,27 @@ document.querySelector('#novaTransacao').addEventListener("click",function(e){
     document.querySelector('.modal-overlay').classList.add('active')
 });
 
-// document.querySelector("#cancelar").addEventListener('click', function modalClose(e){
-//     e.preventDefault();
-//     document.querySelector('.modal-overlay').classList.remove('active')
-// })
-
 function modalClose(){
     event.preventDefault();
-    console.log('teste')
     document.querySelector('.modal-overlay').classList.remove('active')
 
 }
 
 
+const Storage = {
+    get() {
+        return JSON.parse(localStorage.getItem("dev.finances:transactions")) || []
 
+    },
 
-const transactions = [
-    {
-        description: 'Luz',
-        amount: -50000,
-        date: '23/01/2021',
-    },
-    {
-        description: 'Website',
-        amount: 50000,
-        date: '23/01/2021',
-    },
-    {
-        description: 'Internet',
-        amount: -20000,
-        date: '23/01/2021',
-    },
-]
+    set(transactions) {
+        localStorage.setItem("dev.finances:transactions", JSON.stringify(transactions))
+    }
+}
+
 
 const Transaction = {
-    all: transactions,
+    all: Storage.get(),
 
     add(transaction){
         Transaction.all.push(transaction)
@@ -81,13 +67,14 @@ const DOM = {
     transactionsContainer: document.querySelector('#data-table tbody'),
     addTransaction(transaction,index) {
         const tr = document.createElement('tr');
-        tr.innerHTML = DOM.innerHTMLTransaction(transaction);
+        tr.innerHTML = DOM.innerHTMLTransaction(transaction,index);
+        tr.dataset.index = index
 
         DOM.transactionsContainer.appendChild(tr);
 
     },
 
-    innerHTMLTransaction(transaction) {
+    innerHTMLTransaction(transaction, index) {
 
         const CSSclass = transaction.amount > 0 ? "income" : "expense"
 
@@ -98,7 +85,7 @@ const DOM = {
         <td class="${CSSclass}">${amount}</td>
         <td class="date">${transaction.date}</td>
         <td class="minus"> <a href="#">
-            <img src="./assets/minus.svg" alt=""></a>
+            <img onclick="Transaction.remove(${index})" src="./assets/minus.svg" alt=""></a>
         </td>
         `
 
@@ -211,13 +198,14 @@ const Form = {
     }
 }
 
+
 const App = {
     init() {
-        Transaction.all.forEach(transaction => {
-            DOM.addTransaction(transaction)
-        })
+        Transaction.all.forEach(DOM.addTransaction)
 
         DOM.updateBalance();
+
+        Storage.set(Transaction.all)
     },
     reload() {
         DOM.clearTransactions();

@@ -245,6 +245,7 @@ input:focus{
 }
 
 footer{
+    margin-top: 130px;
     text-align: center;
     padding: 4rem 0 2rem;
     color: cadetblue;
