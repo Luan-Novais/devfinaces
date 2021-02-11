@@ -5,7 +5,9 @@ document.querySelector('#novaTransacao').addEventListener("click",function(e){
 
 function modalClose(){
     event.preventDefault();
-    document.querySelector('.modal-overlay').classList.remove('active')
+    document.querySelector('.modal-overlay').classList.remove('active');
+    document.querySelector('.error').style.display = 'none';
+    Form.clearFields();
 
 }
 
@@ -126,6 +128,12 @@ const Utils = {
     },
 
     formatCurrency(value){
+        // const entradas = document.querySelector('#entradas').checked;
+        // const saidas = document.querySelector('#saidas').checked;
+
+        // console.log(entradas)
+        // console.log(saidas)
+
         const signal = Number(value) < 0 ? "-" : ""
 
         value = String(value).replace(/\D/g, "");
@@ -156,13 +164,19 @@ const Form = {
 
     validadeFields(){
         const { description, amount, date } = Form.getValues()
-        console.log(this.getValues())
 
         if( description.trim() === "" || 
             amount.trim() === "" || 
             date.trim() === ""){
-                throw new Error("Por favor, preencha todos os campos")
-        }
+                document.querySelector('.error').style.display = 'inline-block';
+
+        }else{
+            const transaction = Form.formatValues();
+            Form.saveTransaction(transaction);
+            modalClose();
+            Form.clearFields();
+
+         }
     },
 
     formatValues(){
@@ -190,19 +204,9 @@ const Form = {
     },
 
     submit(event) {
-        event.preventDefault();
-
-        try {
+            event.preventDefault();
             Form.formatValues();
-            const transaction = Form.formatValues();
             Form.validadeFields();
-            Form.saveTransaction(transaction);
-            Form.clearFields();
-            modalClose();
-            
-        } catch (error) {
-            alert(error.message)
-        }
     }
 }
 
@@ -210,6 +214,8 @@ const Form = {
 const App = {
     init() {
         Transaction.all.forEach(DOM.addTransaction)
+        document.querySelector('.error').style.display = 'none';
+
 
         DOM.updateBalance();
 
@@ -221,7 +227,6 @@ const App = {
 
     },
 }
-
 
 App.init()
 
