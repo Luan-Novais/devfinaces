@@ -128,12 +128,6 @@ const Utils = {
     },
 
     formatCurrency(value){
-        // const entradas = document.querySelector('#entradas').checked;
-        // const saidas = document.querySelector('#saidas').checked;
-
-        // console.log(entradas)
-        // console.log(saidas)
-
         const signal = Number(value) < 0 ? "-" : ""
 
         value = String(value).replace(/\D/g, "");
